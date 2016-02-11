@@ -28,7 +28,7 @@ define Package/nodejs
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=nodejs.
-	DEPENDS:= +libstdcpp +libstdc++ +libpthread +librt
+	DEPENDS:= +libstdcpp +libpthread +librt
 endef
 
 define Package/nodejs/description
@@ -43,7 +43,6 @@ CONFIGURE_ARGS= \
 	--dest-cpu=$(ARCH) \
 	--dest-os=linux \
 	--without-snapshot \
-	--without-npm 
 	
 #TARGET_LDFLAGS+=-rpath-link $(shell find $(STAGING_DIR) -name ld-uClibc.so.0)
 #TARGET_LDFLAGS+= -L/home/weeds/Work/github/qianguozheng/oschina/openwrt-3.10.14/build_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/uClibc-0.9.33.2/lib/ld-uClibc.so.0
