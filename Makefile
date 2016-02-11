@@ -41,7 +41,7 @@ endef
 
 CPU:=$(subst x86_64,x64,$(subst i386,ia32,$(ARCH)))
 
-define Package/nodejs/config
+define Package/$(PKG_NAME)/config
 	source "$(SOURCE)/Config.in"
 endef
 
