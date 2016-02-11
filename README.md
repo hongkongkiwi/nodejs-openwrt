@@ -1,15 +1,29 @@
-# nodejs-openwrt
-Nodejs package for opewrt
+Nodejs package for OpenWrt
+============================
 
-Usage: 
+## Brief introduction
 
-[1] copy whole package into openwrt_trunk/package/utils folder.
+The project is nodejs compiled specially for OpenWrt
 
-[2] make menuconfig 
-		Utilities
-			-->nodejs
-			
-[3] make V=s
+Ccurrent version: v4.2.6
+
+## Compile
+
+From the OpenWrt SDK to compile
+```
+# In ar71xx platform as an example
+tar xjf OpenWrt-SDK-ar71xx-for-linux-x86_64-gcc-4.8-linaro_uClibc-0.9.33.2.tar.bz2
+cd OpenWrt-SDK-ar71xx-*
+# Create package directories
+mkdir package/utils
+# Clone Makefile
+git clone https://github.com/qianguozheng/nodejs-openwrt package/utils/nodejs
+# Select the package to be compiled Utilities -> nodejs
+# also chose any advanced options for compilation
+make menuconfig
+# Compile Package
+make package/nodejs/{clean,compile} V=99
+```
 
 ***Notice***
 The node binary is about 12M Bytes after strip by mips toolchain, So,
