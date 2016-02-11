@@ -31,3 +31,6 @@ if your FLASH_SIZE is not bigger enough, less than 16MB, the firmware
 may not be generate(like openwrt-ramips-MODEL-squash-sysupgrade.bin),
 you can cp the node binary to firmware /tmp folder to test.
 
+## Contributions
+
+Thanks to @hongkongkiwi for extra compile options
