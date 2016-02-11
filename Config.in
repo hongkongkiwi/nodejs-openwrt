@@ -16,7 +16,17 @@ menu "Select NodeJS Options"
     help 
       Build including support for OpenSSL
     default y
-  
+
+  config NODEJS_DEBUG_BUILD_ENABLED
+    bool 
+    prompt "Enable debug build"
+    default n
+
+  config NODEJS_GDB_SUPPORT_ENABLED
+    bool 
+    prompt "Enable gdb debugging support"
+    default n
+
   menu "Shared Libraries"
     comment "Select Shared Libraries"	
 
@@ -49,16 +59,6 @@ menu "Select NodeJS Options"
           Whether to use shared or statically compiled http_parser
         default y
   endmenu
-
-  config NODEJS_DEBUG_BUILD_ENABLED
-    bool 
-    prompt "Enable debug build"
-    default n
-
-  config NODEJS_GDB_SUPPORT_ENABLED
-    bool 
-    prompt "Enable gdb debugging support"
-    default n
       
   choice
     prompt "Advanced CPU Options"

@@ -72,12 +72,62 @@ endif
 ifeq ($(CONFIG_NODEJS_DEBUG_BUILD_ENABLED),n)
         CONFIGURE_ARGS += --debug
 endif
+# This one is untested, does it need an additional dependency?
 ifeq ($(CONFIG_NODEJS_GDB_SUPPORT_ENABLED),n)
         CONFIGURE_ARGS += --gdb
 endif
+
+# Set any additional User defined v8 engine options
 ifneq ($(CONFIG_NODEJS_V8_OPTIONS),)
 	CONFIGURE_ARGS += --v8-options=$(CONFIG_NODEJS_V8_OPTIONS)
 endif
+
+# Configure Additional CPU Type Options
+ifneq ($(CONFIG_NODEJS_CPU_TYPE_DEFAULT),y)
+  ifeq ($(CONFIG_NODEJS_CPU_TYPE_MIPS),y)
+    ifeq ($(CONFIG_NODEJS_MIPS_ARCH_VARIANT_LOONSON),y)
+	CONFIGURE_ARGS += --with-mips-arch-variant=loongson
+    else ifeq ($(CONFIG_NODEJS_MIPS_ARCH_VARIANT_R1),y)
+        CONFIGURE_ARGS += --with-mips-arch-variant=r1
+    else ifeq ($(CONFIG_NODEJS_MIPS_ARCH_VARIANT_R2),y)
+        CONFIGURE_ARGS += --with-mips-arch-variant=r2
+    else ifeq ($(CONFIG_NODEJS_MIPS_ARCH_VARIANT_R6),y)
+        CONFIGURE_ARGS += --with-mips-arch-variant=r6
+    else ifeq ($(CONFIG_NODEJS_MIPS_ARCH_VARIANT_RX),y)
+        CONFIGURE_ARGS += --with-mips-arch-variant=rx
+    endif
+    ifeq ($(CONFIG_NODEJS_ABI_MIPS_TYPE_SOFT),y)
+        CONFIGURE_ARGS += --with-mips-float-abi=soft
+    else ifeq ($(CONFIG_NODEJS_ABI_MIPS_TYPE_HARD),y)
+        CONFIGURE_ARGS += --with-mips-float-abi=hard
+    endif
+    ifeq ($(CONFIG_NODEJS_FPU_MIPS_FP32),y)
+        CONFIGURE_ARGS += --with-mips-fpu-mode=fp32
+    else ifeq ($(CONFIG_NODEJS_FPU_MIPS_FP64),y)
+        CONFIGURE_ARGS += --with-mips-fpu-mode=fp64
+    else ifeq ($(CONFIG_NODEJS_FPU_MIPS_FPXX),y)
+        CONFIGURE_ARGS += --with-mips-fpu-mode=fpxx
+    endif
+  else ifeq ($(CONFIG_NODEJS_CPU_TYPE_ARM),y)
+    ifeq ($(CONFIG_NODEJS_FPU_ARM_USE_VFP),y)
+        CONFIGURE_ARGS += --with-arm-fpu=vfp
+    else ifeq ($(CONFIG_NODEJS_FPU_ARM_USE_VFPV3),y)
+        CONFIGURE_ARGS += --with-arm-fpu=vfpv3
+    else ifeq ($(CONFIG_NODEJS_FPU_ARM_USE_VFPV3_D16),y)
+        CONFIGURE_ARGS += --with-arm-fpu=vfpv3-d16
+    else ifeq ($(CONFIG_NODEJS_FPU_ARM_USE_NEON),y)
+        CONFIGURE_ARGS += --with-arm-fpu=neon
+    endif
+    ifeq ($(CONFIG_NODEJS_ABI_ARM_TYPE_SOFT),y)
+        CONFIGURE_ARGS += --with-arm-float-abi=soft
+    else ifeq ($(CONFIG_NODEJS_ABI_ARM_TYPE_SOFTFP),y)
+        CONFIGURE_ARGS += --with-arm-float-abi=softfp
+    else ifeq ($(CONFIG_NODEJS_ABI_ARM_TYPE_HARD),y)
+        CONFIGURE_ARGS += --with-arm-float-abi=hard
+    endif
+  endif
+endif
+
 
 define Package/$(PKG_NAME)/install
 	mkdir -p $(1)/usr/bin
