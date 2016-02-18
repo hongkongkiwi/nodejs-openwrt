@@ -50,14 +50,14 @@ menu "Select NodeJS Options"
         prompt "Use Shared libuv"
         help 
           Whether to use shared or statically compiled libuv
-        default y
+        default n
 
       config NODEJS_SHARED_HTTP_PARSER
         bool 
         prompt "Use Shared http_parser"
         help 
           Whether to use shared or statically compiled http_parser
-        default y
+        default n
   endmenu
       
   choice
