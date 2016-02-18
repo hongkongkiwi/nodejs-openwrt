@@ -3,9 +3,9 @@ Nodejs package for OpenWrt
 
 ## Brief introduction
 
-The project is nodejs compiled specially for OpenWrt
+The project is nodejs compiled specially for OpenWrt, it also includes npm (if desired)
 
-Ccurrent version: v4.2.6
+Ccurrent version: v4.3.1 which is the latest stable build at the time.
 
 ## Compile
 
@@ -17,7 +17,7 @@ cd OpenWrt-SDK-ar71xx-*
 # Create package directories
 mkdir package/utils
 # Clone Makefile
-git clone https://github.com/qianguozheng/nodejs-openwrt package/utils/nodejs
+git clone https://github.com/qianguozheng/nodejs-openwrt4 package/utils/nodejs4
 # Select the package to be compiled Utilities -> nodejs
 # also chose any advanced options for compilation
 make menuconfig
@@ -33,4 +33,4 @@ you can cp the node binary to firmware /tmp folder to test.
 
 ## Contributions
 
-Thanks to @hongkongkiwi for extra compile options
+Thanks to @qianguozheng for initial idea.
