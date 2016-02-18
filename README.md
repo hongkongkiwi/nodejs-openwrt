@@ -33,4 +33,4 @@ you can cp the node binary to firmware /tmp folder to test.
 
 ## Contributions
 
-Thanks to (qianguozheng)[@qianguozheng] for initial idea.
+Thanks to @qianguozheng for initial idea.
